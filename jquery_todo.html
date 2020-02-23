@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    ul{
+        list-style:none;
+
+    }
+    .todo_item{
+        display:flex;
+
+    }
+</style>
+<body>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+    <form id="form" method="post">
+        <input type="text" name="todo">
+        <button id="add">Add</button>
+        <button id="delete">Delete</button>
+    </form>
+    <div>
+        <ul id="todo_list">
+            
+            
+        </ul>
+    </div>
+    <script> 
+        $('#delete').click(function(e){
+            e.preventDefault();
+            $('#todo_list').children().each(function(index,todo){
+                if(todo.children[0].checked === true){
+                    todo.remove();
+                }
+            });
+            
+        })
+
+        $('#form').submit(function(e){
+            e.preventDefault();
+            let todo_item = e.target.todo.value
+            $('#todo_list').append(`<div class="todo_item">
+                                                    <input type="checkbox"><li>${todo_item}</li><br>
+                                                </div>`);
+        })
+    </script>
+</body>
+</html>
